@@ -1,0 +1,14 @@
+from bs4 import BeautifulSoup
+import requests
+
+url = "http://olympus.realpython.org/profiles"
+data = requests.get(url)
+soup = BeautifulSoup(data.text, 'html.parser')
+
+names = soup.find_all("a")
+
+names_list = []
+for n in names[0:]:
+  result = n.text.strip()
+  names_list.append(result)
+print(names_list)
